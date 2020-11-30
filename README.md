@@ -5,19 +5,25 @@
 [![Version](https://img.shields.io/npm/v/balenaclone.svg)](https://npmjs.org/package/balenaclone)
 [![License](https://img.shields.io/npm/l/balenaclone.svg)](https://github.com/vipulgupta2048/balenaclone/blob/master/package.json)
 
->  Dead simple command line utility to clone balenaCloud applications
+Dead simple command line utility to clone balenaCloud applications so you don't have to. It's more of a balena.yml file creator for existing applications at this point. 
 
-More like, a balena.yml creator from existing applications. 
+## Getting Started
 
-## Install & just straight up clone!
+Install & just straight up clone! We will prompt you for the information that's what the CLI is for.
 
 ```
 npx balenaclone
 ```
 
-## Minimal Instructions! 
+## What will this do?
 
-Only balena Team Members can use these instructions till we release this to the world.
-Head to dashboard.balena-cloud.com and click the `Create Application` button. Toggle the `Advanced` button on there to upload the `balena.yml` file you just generated and voila we cloned your app! We are working on using full on DWB for that and make this entire procedure one click but thought to give more freedom to people if they want to edit files up their own way. 
+The CLI uses the inputs you provided to build a balena.yml file that can be used to create clones of your existing balenaCloud applications. This is especially useful in multiple scenarios.
 
-Also, a great a utility for folks wanting to create [Deploy with balena](https://www.balena.io/docs/learn/deploy/deploy-with-balena-button/) buttons and get their apps uploaded on [balenaHub](https://www.hub.balena.io).
+1. Having multiple replicable environments sharing the same variables and configuration. Such as production, testing, and development applications for your fleet of devices. 
+2. Creating [Deploy with balena](https://www.balena.io/docs/learn/deploy/deploy-with-balena-button/) buttons definitely gets easier with this. No more manual work of writing a `balena.yml` file
+3. Getting your applications up on [balenaHub](https://www.hub.balena.io) even faster!
+
+## Thanks for the utility, what next!
+
+- Head to dashboard.balena-cloud.com and click the `Create Application` button. 
+- Toggle the `Advanced` button on there to upload the `balena.yml` file you just generated and voila we cloned your app! Now go create something awesome!

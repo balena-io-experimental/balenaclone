@@ -1,7 +1,7 @@
 {
   "name": "balenaclone",
   "description": "Dead simple command line utility to clone balenaCloud applications",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Vipul Gupta",
   "bin": {
     "balenaclone": "./bin/run"
