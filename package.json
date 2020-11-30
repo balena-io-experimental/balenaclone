@@ -44,6 +44,7 @@
   },
   "repository": "vipulgupta2048/balenaclone",
   "scripts": {
+	"lint": "balena-lint src/ && echo \"Done!\"",
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
     "test": "echo NO TESTS",

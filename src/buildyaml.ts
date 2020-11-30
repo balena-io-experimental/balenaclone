@@ -5,8 +5,8 @@ const os = require('os')
 var path = require("path");
 
 const balena = getSdk({
-    apiUrl: "https://api.balena-cloud.com/",
-    dataDirectory: os.userInfo().homedir + "/.balena"
+	apiUrl: "https://api.balena-cloud.com/",
+	dataDirectory: os.userInfo().homedir + "/.balena"
 });
 
 interface yamlObject {
@@ -14,7 +14,7 @@ interface yamlObject {
 	repository: string,
 	device: string,
 	branch: string,
-	description:string
+	description: string
 }
 
 function buildConfigYaml(yamlData: yamlObject) {
@@ -40,13 +40,13 @@ function buildConfigYaml(yamlData: yamlObject) {
 	}
 
 	if (yamlData.appName) {
-		balena.models.application.get(yamlData.appName, function(error: any, application: any) {
+		balena.models.application.get(yamlData.appName, function (error: any, application: any) {
 			if (error) throw error;
 			console.log(`\nWe cloning from ${yamlData.appName}, hang tight!`)
 		});
 		raw["slug"] = raw["name"] = yamlData.appName + "-" + Date.now().toString().slice(8)
 		raw["data"]["description"] = (yamlData.description === "") ? raw["data"]["description"] : yamlData.description
-		raw["data"]["defaultDeviceType"] = (yamlData.device === "") ? raw["data"]["defaultDeviceType"] :  yamlData.device
+		raw["data"]["defaultDeviceType"] = (yamlData.device === "") ? raw["data"]["defaultDeviceType"] : yamlData.device
 		if (raw["assets"][0]["name"] === "repository" && yamlData.repository) {
 			raw["assets"][0]["url"] = yamlData.repository
 		}
@@ -58,11 +58,11 @@ function buildConfigYaml(yamlData: yamlObject) {
 		}
 		buildBalenaYaml(raw, yamlData.appName)
 	} else {
-		throw("\nNeed an application to clone, we were provided with None!")
+		throw ("\nNeed an application to clone, we were provided with None!")
 	}
 }
 
-async function buildBalenaYaml(raw: any, appName: string){
+async function buildBalenaYaml(raw: any, appName: string) {
 	let temp: any = {}
 	let temp1: any = {}
 	const envVar = await balena.models.application.envVar.getAllByApplication(appName)
@@ -78,8 +78,8 @@ async function buildBalenaYaml(raw: any, appName: string){
 	raw["data"]["applicationConfigVariables"] = temp1
 
 	// if the server isn't working then create a local file
-	fs.writeFile('balena.yml', YAML.stringify(raw), function(err: any){
-		if (err){
+	fs.writeFile('balena.yml', YAML.stringify(raw), function (err: any) {
+		if (err) {
 			throw err
 		}
 		console.log(`balena.yml file created at ${path.resolve("balena.yml")}`);
