@@ -7,6 +7,8 @@
 
 >  Dead simple command line utility to clone balenaCloud applications
 
+More like, a balena.yml creator from existing applications. 
+
 ## Install & just straight up clone!
 
 ```
