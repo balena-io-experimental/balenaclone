@@ -1,0 +1,52 @@
+{
+  "name": "balenaclone",
+  "description": "Dead simple command line utility to clone balenaCloud applications",
+  "version": "0.0.1",
+  "author": "Vipul Gupta",
+  "bin": {
+    "balenaclone": "./bin/run"
+  },
+  "bugs": "https://github.com/vipulgupta2048/balenaclone/issues",
+  "dependencies": {
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "balena-sdk": "^15.17.0",
+    "json-to-pretty-yaml": "^1.2.2",
+    "@oclif/plugin-help": "^3.2.0",
+    "tslib": "^1.14.1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.24.1",
+    "@types/node": "^10.17.47",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "eslint-config-oclif-typescript": "^0.1.0",
+    "ts-node": "^8.10.2",
+    "@balena/lint": "^5.2.1",
+    "typescript": "^3.9.7"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/vipulgupta2048/balenaclone",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "oclif": {
+    "bin": "balenaclone"
+  },
+  "repository": "vipulgupta2048/balenaclone",
+  "scripts": {
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
