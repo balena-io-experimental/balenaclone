@@ -9,7 +9,9 @@ Dead simple command line utility to clone balenaCloud applications so you don't 
 
 ## Getting Started
 
-Install & just straight up clone! We will prompt you for the information that's what the CLI is for.
+Install & just straight up clone! We will prompt you for the information that's what the CLI is for. Some prerequisites you need to have:
+1. Need to have Node & NPM installed in your system. 
+2. Need to have balenaCLI authenticated with your current account from where you would like to clone applications. 
 
 ```
 npx balenaclone
