@@ -9,6 +9,7 @@ const balena = getSdk({
 	dataDirectory: os.userInfo().homedir + "/.balena"
 });
 
+// Assigning types to CLI inputs
 interface yamlObject {
 	appName: string,
 	repository: string,
@@ -40,16 +41,18 @@ function buildConfigYaml(yamlData: yamlObject) {
 	}
 
 	if (yamlData.appName) {
-		balena.models.application.get(yamlData.appName, function (error: any, application: any) {
+		balena.models.application.get(yamlData.appName, function (error: string) {
 			if (error) throw error;
 			console.log(`\nWe cloning from ${yamlData.appName}, hang tight!`)
 		});
+		// Creating a unique application name when cloning
 		raw["slug"] = raw["name"] = yamlData.appName + "-" + Date.now().toString().slice(8)
 		raw["data"]["description"] = (yamlData.description === "") ? raw["data"]["description"] : yamlData.description
 		raw["data"]["defaultDeviceType"] = (yamlData.device === "") ? raw["data"]["defaultDeviceType"] : yamlData.device
 		if (raw["assets"][0]["name"] === "repository" && yamlData.repository) {
 			raw["assets"][0]["url"] = yamlData.repository
 		}
+		// Pushing a branch tarball release to the application.
 		if (yamlData.branch !== "/archive/.tar.gz") {
 			raw["assets"].push({
 				"url": yamlData.branch,
@@ -62,28 +65,31 @@ function buildConfigYaml(yamlData: yamlObject) {
 	}
 }
 
+// Building the YAML file
 async function buildBalenaYaml(raw: any, appName: string) {
 	let temp: any = {}
-	let temp1: any = {}
+	// Fetching application variables
 	const envVar = await balena.models.application.envVar.getAllByApplication(appName)
 	for (let n in envVar) {
 		temp["- " + envVar[n].name] = envVar[n].value
 	}
 	raw["data"]["applicationEnvironmentVariables"] = temp
 
+	// Fetching configuration variables
 	const configVar = await balena.models.application.configVar.getAllByApplication(appName)
 	for (let m in configVar) {
-		temp1["- " + configVar[m].name] = configVar[m].value
+		temp["- " + configVar[m].name] = configVar[m].value
 	}
-	raw["data"]["applicationConfigVariables"] = temp1
+	temp = {}
+	raw["data"]["applicationConfigVariables"] = temp
 
-	// if the server isn't working then create a local file
+	// Creating a balena.yml file
 	fs.writeFile('balena.yml', YAML.stringify(raw), function (err: any) {
 		if (err) {
 			throw err
 		}
 		console.log(`balena.yml file created at ${path.resolve("balena.yml")}`);
-		console.log(`\nInstructions!\nOnly balena Team Members can use these instructions till we release this to the world.
+		console.log(`\nInstructions!
 Head to dashboard.balena-cloud.com and click the Create Application button. Toggle the "Advanced" button, to upload the balena.yml file you just generated and voila we cloned your app! We are working on using DWB for that, to make this procedure one click!
 		`)
 	})
