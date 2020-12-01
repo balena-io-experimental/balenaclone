@@ -1,12 +1,12 @@
 {
   "name": "balenaclone",
   "description": "Dead simple command line utility to clone balenaCloud applications",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Vipul Gupta",
   "bin": {
     "balenaclone": "./bin/run"
   },
-  "bugs": "https://github.com/vipulgupta2048/balenaclone/issues",
+  "bugs": "https://github.com/balena-io-playground/balenaclone/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -33,7 +33,7 @@
     "/bin",
     "/lib"
   ],
-  "homepage": "https://github.com/vipulgupta2048/balenaclone",
+  "homepage": "https://github.com/balena-io-playground/balenaclone",
   "keywords": [
     "oclif"
   ],
@@ -43,7 +43,7 @@
   "oclif": {
     "bin": "balenaclone"
   },
-  "repository": "vipulgupta2048/balenaclone",
+  "repository": "balena-io-playground/balenaclone",
   "scripts": {
     "lint": "balena-lint src/ && echo \"Done!\"",
     "posttest": "eslint . --ext .ts --config .eslintrc",

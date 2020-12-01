@@ -1,9 +1,9 @@
 # balenaclone
 
-
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/balenaclone.svg)](https://npmjs.org/package/balenaclone)
-[![License](https://img.shields.io/npm/l/balenaclone.svg)](https://github.com/vipulgupta2048/balenaclone/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/balenaclone.svg)](https://github.com/balena-io-playground/balenaclone/blob/master/package.json)
+![Maintenance](https://img.shields.io/maintenance/yes/2020?color=blueviolet)
 
 Dead simple command line utility to clone balenaCloud applications so you don't have to. It's more of a balena.yml file creator for existing applications at this point. 
 
